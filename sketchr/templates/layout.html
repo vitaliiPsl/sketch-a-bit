@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/icon" href="static/icon/favicon.ico"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block style %}{% endblock %}
+
+    <title>Sketch-A-Bit</title>
+</head>
+<body>
+    <header>
+        <div class="content">
+            <div class="title">
+                <h1>Sketch-A-Bit</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="{{ url_for('main.index') }}">Draw</a></li>
+                    <li><a href="{{ url_for('main.gallery') }}">Gallery</a></li>
+                    <div class="vr"></div>
+                    
+                    {% if g.user %}
+                        <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    <main>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="content">
+            <h4>Copyright © 2021 <a href="https://github.com/vitaliiPsl">vitaliiPsl</a></h4>
+        </div>
+    </footer>
+
+    {% block script%}{% endblock %}
+</body>
+</html>
