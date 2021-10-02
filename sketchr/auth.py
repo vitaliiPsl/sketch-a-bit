@@ -38,7 +38,7 @@ def register():
                 error = f"User {username} already exist"
         
         if error is None:
-            redirect(url_for('auth.login'))
+            return redirect(url_for('auth.login'))
 
         flash(error)
 
