@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="menu">
+        <div class="menu-item">
+            <button id="rainbow" class="btn">
+                Rainbow
+            </button>
+        </div>
+        <div class="menu-item">
+            <button id="eraser" class="btn">
+                Eraser
+            </button class="btn">
+        </div>
+        <div class="menu-item">
+            <button id="clear" class="btn">
+                Clear
+            </button>
+        </div class="menu-item">
+        <div>
+            <input id="color" type="color" name="color-picker">
+        </div>
+    </div>
+        {% if record %}
+            <div id="{{ record['id'] }}" class="canvas"></div>
+        {% else %}
+            <div id="none" class="canvas"></div>
+        {% endif %}
+
+    <div class="action-pannel">
+        <div class="size">
+            <h4>Canvas size: <span class="size-field">16</span> x <span class="size-field">16</span></h4>
+            <input id="canvas-size" name="canvas-size" type="range" min="2" max="48" value="16">
+        </div>
+
+        {% if not record and g.user['id'] %}
+            <form class="save-form" action="">
+                <input id="picture-title" name="title" type="text" placeholder="Title" autocomplete="off" required >
+                <input id="save-btn" class="btn" type="submit" value="Save">
+            </form>
+        {% elif record and record['author_id'] == g.user['id'] %}
+            <form class="save-form" action="">
+                <input id="picture-title" name="title" type="text" placeholder="Title" autocomplete="off" required >
+                <input id="save-btn" class="btn" type="submit" value="Save">
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="static/js/index.js"></script>   
+{% endblock %}
