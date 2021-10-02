@@ -1,0 +1,63 @@
+.gallery{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.record{
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 5px #393939, 0 -1px 3px #393939;
+}
+
+
+.record a{
+    width: 80%;
+    text-align: center;
+
+    padding: 8px;
+    border-bottom: 1px solid #393939;
+
+    transition: 0.3s;
+}
+
+.record a:hover{
+    letter-spacing: 2px;
+}
+
+.record .picture-preview{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.record .picture-preview div{
+    display: inline-block;
+}
+
+.record .record-info{
+    width: 100%;
+    padding: 8px;
+    border-top: 1px solid #393939;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+img{
+    width: 100%;
+}
