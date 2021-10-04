@@ -191,6 +191,7 @@ main .content{
 
     display: flex;
     justify-content: space-between;
+    gap: 16px;
 }
 
 .size input{
@@ -200,7 +201,9 @@ main .content{
 .save-form{
     display: flex;
     gap: 16px;
+    flex: 1;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .save-form input{
@@ -209,6 +212,10 @@ main .content{
 
 #save-btn:hover{
     border-color: #56a65a;
+}
+
+#delete-btn:hover{
+    border-color: #ff0000;
 }
 
 footer{

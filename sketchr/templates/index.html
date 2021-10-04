@@ -28,10 +28,12 @@
         {% endif %}
 
     <div class="action-pannel">
-        <div class="size">
-            <h4>Canvas size: <span class="size-field">16</span> x <span class="size-field">16</span></h4>
-            <input id="canvas-size" name="canvas-size" type="range" min="2" max="48" value="16">
-        </div>
+        {% if not record and g.user['id'] %}
+            <div class="size">
+                <h4>Canvas size: <span class="size-field">16</span> x <span class="size-field">16</span></h4>
+                <input id="canvas-size" name="canvas-size" type="range" min="2" max="48" value="16">
+            </div>
+        {% endif %}
 
         {% if not record and g.user['id'] %}
             <form class="save-form" action="">
@@ -41,7 +43,8 @@
         {% elif record and record['author_id'] == g.user['id'] %}
             <form class="save-form" action="">
                 <input id="picture-title" name="title" type="text" placeholder="Title" autocomplete="off" required >
-                <input id="save-btn" class="btn" type="submit" value="Save">
+                <input id="save-btn" name="save-btn" class="btn" type="submit" value="Save">
+                <button id="delete-btn" class="btn">Delete</button>
             </form>
         {% endif %}
     </div>

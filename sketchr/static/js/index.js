@@ -43,14 +43,22 @@ clearBtn.addEventListener("click", () => {
     createCanvas(canvasSize);
 });
 
-sizeInput.addEventListener("input", changeCanvasSize);
+if(sizeInput){
+    sizeInput.addEventListener("input", changeCanvasSize);
+}
 
 colorInput.addEventListener("change", () => {
     color = colorInput.value
     document.documentElement.style.setProperty(`--color`, color)
 });
 
-saveBtn.addEventListener('click', saveCanvas)
+if(saveBtn){
+    saveBtn.addEventListener('click', saveCanvas)
+}
+
+if(deleteBtn){
+    deleteBtn.addEventListener('click', deleteRecord)
+}
 
 function eraserBtnClick(){
     closeRainbow();
@@ -96,6 +104,7 @@ function updateSizeFields(){
     for(let field of canvasSizeFields){
         field.innerHTML = canvasSize 
     }
+    sizeInput.value = canvasSize
 }
 
 function changeBackground(element){
@@ -157,6 +166,10 @@ function loadCanvas(id){
 function displayCanvas(record){
     let size = record['size'];
     canvasSize = size;
+
+    if(sizeInput){
+        updateSizeFields();
+    }
     createCanvas(size);
 
     body = record['body'];
@@ -197,6 +210,16 @@ function saveCanvas(){
     .then(data => {
       console.log(data);
     });
+}
+
+function deleteRecord(){
+    let id = canvas.id;
+    let deleteData = {'id': id}
+    
+    postData('/delete', deleteData)
+        .then(data)
+
+    window.location.href = "/";
 }
 
 async function postData(url = '', data = {}) {

@@ -19,12 +19,13 @@ def index():
     id = request.args.get("id")
 
     if id is not None:
-        print("Not null")
+        id = int(id)
+
         db = get_db()
         record = db.execute(
             'SELECT id, author_id '
-            'FROM picture where id = ?',
-            (id)
+            'FROM picture where id = (?) ',
+            ((id),)
         ).fetchone()
 
         if record is None:
@@ -82,7 +83,7 @@ def get_record():
         'SELECT title, body, size '
         'FROM picture '
         'WHERE id = ?',
-        (id)
+        (id, )
     ).fetchone()
 
     if record is None:
@@ -119,3 +120,17 @@ def save():
     flash(error)
     
     return render_template("index.html")
+
+
+@bp.route('/delete', methods=['POST'])
+def delete_record():
+    id = request.json['id']
+    db = get_db()
+    db.execute(
+        'DELETE FROM picture '
+        'WHERE id = ?',
+        (id,)
+    )
+    db.commit()
+
+    return {'result': 'success'}
