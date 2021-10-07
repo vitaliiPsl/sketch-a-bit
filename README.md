@@ -9,4 +9,4 @@
 4. ` flask init-db `
 5. ` flask run `
 
-![Demo image](https://github.com/vitaliiPsl/sketch-a-bit/blob/main/raw/img/demo.png)
+![Demo image](https://github.com/vitaliiPsl/sketch-a-bit/blob/main/sketchr/static/img/demo.png)
