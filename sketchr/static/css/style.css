@@ -1,18 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&display=swap');
 
 :root{
-    --color: #000;
+    --color: #393939;
+    --main-color: #393939;
 }
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-a{
+    color: var(--main-color);
     text-decoration: none;
-    color: #393939;
 }
 
 li{
@@ -28,39 +26,50 @@ body{
     justify-content: space-between;
 
     font-family: 'Open Sans', sans-serif;
-    color: #393939;
+    color: var(--main-color);
 }
 
 .content{
-    margin: 0 20%;
+    margin: 0 15%;
+    display: flex;
+    justify-content: center;
 }
 
 .flash { 
     margin: 1em 0; 
     padding: 1em; 
     background: #efefef; 
-    border: 2px solid rgb(39, 39, 39);
+    border: 2px solid var(--main-color);
     text-align: center;
 }
 
 header{
     width: 100%;
     margin-bottom: 20px;
+    border-bottom: 1px solid #393939;
+    padding-bottom: 8px;
 }
 
 header .content{
     display: flex;
+    flex-direction: column;
+}
+
+header .nav-bar{
+    width: 100%;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    font-size: 46px;
+    font-weight: 900;
 }
 
 .title{
     display: flex;
     align-items: center;
-}
-
-.title h1{
-    font-size: 46px;
-    font-weight: 900;
 }
 
 .title:hover{
@@ -101,136 +110,72 @@ header .content{
 .vr{
     width: 1px;
     height: 10px;
-    background-color: #000;
+    background-color: var(--main-color);
 }
 
-main{
-    width: 100%;
-    height: 80%;
-}
-
-main .content{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.menu{
-    width: 600px;
-
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 16px;
-}
-
-.menu div{
-    width: 15%;
-}
-
-.btn, .menu div > input{
-    width: 100px;
+.burger-menu{
+    display: none;
+    width: 40px;
     height: 40px;
+    background: url(../icon/menu/menu.png);
+    background-position: center;
 }
 
-.btn{
-    font-size: 16px;
+.burger-menu.active{
+    width: 40px;
+    height: 40px;
+    background: url(../icon/menu/close.png);
+    background-position: center;
+}
 
-    background-color: #fff;
-    border: 2px solid rgb(39, 39, 39);
+.nav-drop-down{
+    width: 100%;
+
+    display: none;
+    justify-content: center;
+    /* border: 1px solid var(--main-color); */
     border-radius: 10px;
-    cursor: pointer;
+
     transition: 0.3s;
 }
 
-.menu div button:hover{
-    border-color: var(--color);
+.nav-drop-down.active{
+    display: flex;
 }
 
-.btn.pressed{
-    background: #c3c3c388;
-    border-color: var(--color);
-}
-
-.menu div > input{
-    padding: 0;
+.nav-drop-down ul{
     width: 100%;
-    height: 100%;
-
-    border: none;
-    border-radius: 50%;
-    
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.menu div > input:hover{
-    cursor: pointer;
-}
-
-.canvas{
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgb(39, 39, 39);
-
-    height: 600px;
-    width: 600px;
-    border-left: 1px solid #000;
-    border-top: 1px solid #000;
-
-    margin-bottom: 16px;
-}
-
-.canvas div{
-    display: flex;
-}
-
-.canvas div > div{
-    flex: 1 0 auto;
-    border-bottom: 0.1px solid #000;
-    border-right: 0.2px solid #000;
-
-    transition: 0.2s;
-}
-
-.action-pannel{
-    width: 600px;
-    margin-top: 8px;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 16px;
-}
-
-.size input{
-    width: 100%;
-}
-
-.save-form{
-    display: flex;
-    gap: 16px;
-    flex: 1;
     align-items: center;
-    justify-content: flex-end;
 }
 
-#download-btn:hover{
-    border-color: #045add;
-}
-
-.save-form input{
+.nav-drop-down li{
+    width: 100%;
     padding: 8px;
+    border-bottom: 1px solid var(--main-color);
+    text-align: center;
+
+    transition: 0.3s;
+}
+/* .nav-drop-down li:last-child{ */
+    /* border: none;
+} */
+
+.nav-drop-down li:hover{
+    letter-spacing: 2px;
 }
 
-#save-btn:hover{
-    border-color: #56a65a;
-}
-
-#delete-btn:hover{
-    border-color: #ff0000;
+main{
+    
 }
 
 footer{
     padding: 16px 0;
+
+    justify-self: flex-end;
 }
 
 footer .content{
@@ -239,3 +184,31 @@ footer .content{
     align-items: center;
 }
 
+@media (max-width: 1020px){
+    .burger-menu{
+        display: block;
+    }
+
+    .nav{
+        display: none;
+    }
+}
+
+@media (max-width: 750px){
+    .content{
+        margin: 0;
+        padding: 0 16px;
+    }
+ }
+
+@media (max-width: 550px){
+   header h1{
+       font-size: 36px;
+   }
+}
+
+@media (max-width: 400px){
+    header h1{
+        font-size: 24px;
+    }
+ }

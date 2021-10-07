@@ -1,5 +1,4 @@
-const canvas = document.querySelector(".canvas");
-
+let canvas = document.querySelector(".canvas");
 const rainbowBtn = document.querySelector("#rainbow");
 const eraserBtn = document.querySelector("#eraser");
 const clearBtn = document.querySelector("#clear");
@@ -22,15 +21,20 @@ let color = '#000';
 
 //event listeners
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', showCanvas);
+
+function showCanvas(){
     let id = canvas.id
+
     if(id == 'none'){
         createCanvas(16);
     }
     else{
         loadCanvas(id);
     }
-})
+}
+
+window.addEventListener('resize', showCanvas);
 
 document.addEventListener("mousedown", () => mouseDown = true);
 
@@ -54,6 +58,7 @@ colorInput.addEventListener("change", () => {
 });
 
 if(downloadBtn){
+    console.log("hola");
     downloadBtn.addEventListener('click', downloadPicture);
 }
 
@@ -131,14 +136,16 @@ function getRainbow(){
 
 function createCanvas(size){
     while(canvas.firstChild){
-        canvas.removeChild(canvas.firstChild)
+        canvas.removeChild(canvas.firstChild);
     }
+
+    let width = canvas.offsetWidth;
 
     for(let i = 0; i < size; i++){
         let row = document.createElement("div");
 
-        row.style.width = "600px";
-        row.style.height = `${600 / size}px`;
+        row.style.width = width;
+        row.style.height = `${width/ size}px`;
 
         canvas.appendChild(row);
 
@@ -146,7 +153,7 @@ function createCanvas(size){
             let column = document.createElement("div")
             row.appendChild(column);
 
-            column.style.width = `${600 / size}px`;
+            column.style.width = `${width/ size}px`;
             column.style.height = "100%"
 
             column.addEventListener("mouseover", () => {
