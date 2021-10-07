@@ -32,7 +32,7 @@ body{
 }
 
 .content{
-    margin: 0 15%;
+    margin: 0 20%;
 }
 
 .flash { 
@@ -53,18 +53,18 @@ header .content{
     justify-content: space-between;
 }
 
-header .content h1{
-    font-size: 50px;
-    font-weight: 900;
-}
-
 .title{
     display: flex;
     align-items: center;
 }
 
+.title h1{
+    font-size: 46px;
+    font-weight: 900;
+}
+
 .title:hover{
-    cursor: none;
+    cursor: pointer;
 }
 
 .nav{
@@ -117,10 +117,10 @@ main .content{
 }
 
 .menu{
-    width: 100%;
+    width: 600px;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     margin-bottom: 16px;
 }
@@ -174,13 +174,20 @@ main .content{
 
     height: 600px;
     width: 600px;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
 
     margin-bottom: 16px;
 }
 
+.canvas div{
+    display: flex;
+}
+
 .canvas div > div{
-    display: inline-block;
-    border: 0.2px solid #000;
+    flex: 1 0 auto;
+    border-bottom: 0.1px solid #000;
+    border-right: 0.2px solid #000;
 
     transition: 0.2s;
 }
@@ -204,6 +211,10 @@ main .content{
     flex: 1;
     align-items: center;
     justify-content: flex-end;
+}
+
+#download-btn:hover{
+    border-color: #045add;
 }
 
 .save-form input{
