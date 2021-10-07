@@ -9,6 +9,7 @@ const sizeInput = document.querySelector("input[name='canvas-size']");
 
 const canvasSizeFields = document.querySelectorAll(".size-field");
 
+const downloadBtn = document.querySelector("#download-btn")
 const pictureTitle = document.querySelector("#picture-title")
 const saveBtn = document.querySelector('#save-btn')
 const deleteBtn = document.querySelector('#delete-btn')
@@ -48,16 +49,20 @@ if(sizeInput){
 }
 
 colorInput.addEventListener("change", () => {
-    color = colorInput.value
-    document.documentElement.style.setProperty(`--color`, color)
+    color = colorInput.value;
+    document.documentElement.style.setProperty(`--color`, color);
 });
 
+if(downloadBtn){
+    downloadBtn.addEventListener('click', downloadPicture);
+}
+
 if(saveBtn){
-    saveBtn.addEventListener('click', saveCanvas)
+    saveBtn.addEventListener('click', saveCanvas);
 }
 
 if(deleteBtn){
-    deleteBtn.addEventListener('click', deleteRecord)
+    deleteBtn.addEventListener('click', deleteRecord);
 }
 
 function eraserBtnClick(){
@@ -185,6 +190,11 @@ function displayCanvas(record){
     }
 
     console.log("Done");
+}
+
+function downloadPicture(){
+    id = canvas.id;
+    window.open(`/download/${id}`);
 }
 
 function saveCanvas(){

@@ -1,15 +1,19 @@
 from logging import error
 import re
+import os
+
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, app, flash, g, redirect, render_template, request, session, url_for, current_app, send_from_directory
 )
 from flask.json import jsonify
 
-from werkzeug.exceptions  import abort
+from werkzeug.exceptions import abort
 
 from sketchr.auth import login_required
 
 from sketchr.db import get_db
+
+from . import utils
 
 bp = Blueprint('main', __name__)
 
@@ -134,3 +138,25 @@ def delete_record():
     db.commit()
 
     return {'result': 'success'}
+
+
+@bp.route('/download/<id>')
+def download(id):
+    db = get_db()    
+    picture = db.execute(
+        'SELECT title, body, size '
+        'FROM picture '
+        'WHERE id = ?',
+        (id, )
+    ).fetchone()
+
+    if not picture:
+        flash(f"Picture with id {id} not found")
+        return redirect(url_for("index"))
+
+    name = f"{picture['title']}.png"
+    picture = utils.create_picture(picture)
+    picture.save(os.path.join(current_app.config['UPLOAD_FOLDER'], name))
+    send_from_directory
+        
+    return send_from_directory(current_app.config["UPLOAD_FOLDER"], name, as_attachment=True)

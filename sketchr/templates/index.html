@@ -35,6 +35,10 @@
             </div>
         {% endif %}
 
+        {% if record %}
+            <button id="download-btn" class="btn">Download</button>
+        {% endif %}
+
         {% if not record and g.user['id'] %}
             <form class="save-form" action="">
                 <input id="picture-title" name="title" type="text" placeholder="Title" autocomplete="off" required >
