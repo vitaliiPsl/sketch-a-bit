@@ -1,6 +1,6 @@
 # Sketch-A-Bit
 
-#### Description: This project is a simple scketch board where you can draw something and save it to gallery
+#### Description: This project is a simple web scketch board where you can draw something and save it to gallery
 
 ### Hot to open this app?
 1. ` git clone https://github.com/vitaliiPsl/sketch-a-bit `
