@@ -2,7 +2,7 @@
 
 #### Description: This project is a simple web scketch board where you can draw something and save it to gallery
 
-### Hot to open this app?
+### How to run this app?
 1. ` git clone https://github.com/vitaliiPsl/sketch-a-bit `
 2. ` cd sketch-a-bit/ `
 3. ` pip install -r requirements.txt `
